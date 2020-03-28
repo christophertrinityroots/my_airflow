@@ -142,4 +142,4 @@ cython_debug/
 media
 static
 
-/dags/config/*
+/dags/config/news_config.py
