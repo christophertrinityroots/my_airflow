@@ -2,7 +2,7 @@ from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
-from config import news_config
+from config.news_config import news_config
 from line import notify
 import requests
 import json
@@ -20,7 +20,7 @@ default_args = {
 dag = DAG(
     "news_to_notify", 
     default_args=default_args,
-    schedule_interval=news_config.schedule_interval,
+    schedule_interval=news_config['news_schedule_interval'],
 )
 
 dag.catchup = False
@@ -64,9 +64,9 @@ def format_article(article):
 
 # main functions for DAGS
 def get_request_urls():
-    countries = news_config.news_api['countries']
-    base_url = news_config.news_api['base_url']
-    api_key = news_config.news_api['api_key']
+    countries = news_config['news_countries']
+    base_url = news_config['news_base_url']
+    api_key = news_config['news_api_key']
     request_urls = map(create_country_urls(base_url, api_key), countries)
     return list(request_urls)
 
@@ -92,10 +92,10 @@ def format_message(**context):
 
 def send_line_message(**context):
     welcome_message = str(datetime.now().date())
-    notify.lineNotify(welcome_message, news_config.line_notify)
+    notify.lineNotify(welcome_message, news_config['line_notify'])
     articles_list = context['ti'].xcom_pull(task_ids='format_message')
     for article in articles_list:
-        notify.lineNotify(article, news_config.line_notify)
+        notify.lineNotify(article, news_config['line_notify'])
     return True
 
 t0 = PythonOperator(

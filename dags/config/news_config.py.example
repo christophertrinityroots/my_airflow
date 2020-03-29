@@ -1,12 +1,10 @@
-schedule_interval = '@daily'
-
-news_api = {
-    'base_url': 'https://newsapi.org/v2/top-headlines',
-    'api_key': 'your_news_api_key',
-    'countries': ['xx', 'yy',]
+news_config = {
+   "news_schedule_interval":"@daily",
+   "news_base_url":"https://newsapi.org/v2/top-headlines",
+   "news_api_key":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+   "news_countries":[
+      "th",
+      "us"
+   ],
+   "line_notify":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 }
-
-
-line_notify = 'your_line_notify_key'
-#stickerPackageID = 2
-#stickerID = 150
