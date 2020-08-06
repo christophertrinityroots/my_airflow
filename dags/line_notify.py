@@ -46,6 +46,7 @@ dag = DAG(
     default_args=default_args,
     schedule_interval='* * * * *',
     catchup=False,
+    is_paused_upon_creation=False
 )
 
 t0 = PythonOperator(
