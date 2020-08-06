@@ -1,24 +1,10 @@
 version: '2.1'
 services:
-    postgres:
-        image: postgres:9.6
-        environment:
-            - POSTGRES_USER=airflow
-            - POSTGRES_PASSWORD=airflow
-            - POSTGRES_DB=airflow
-
     webserver:
-        image: puckel/docker-airflow
-        depends_on:
-            - postgres
-        environment:
-            - LOAD_EX=n
-            - EXECUTOR=Local
+        image: my_airflow
         volumes:
             - ./dags:/usr/local/airflow/dags
             - ./requirements/requirements.txt:/requirements.txt
-            - ./ds:/usr/local/airflow/ds
-            - ./script:/usr/local/airflow/script
         ports:
             - "8080:8080"
         command: webserver

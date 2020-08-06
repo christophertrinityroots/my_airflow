@@ -1,6 +1,10 @@
-#!/usr/local/bin/python
-# -*- coding: utf-8 -*-
+from airflow import DAG
+from airflow.operators.bash_operator import BashOperator
+from airflow.operators.python_operator import PythonOperator
+from airflow.utils.dates import days_ago
+import datetime
 import requests
+import json
 
 def lineNotify(message):
     payload = {'message':message}
@@ -21,11 +25,30 @@ def notifySticker(stickerID,stickerPackageID):
 
 def _lineNotify(payload,file=None):
     url = 'https://notify-api.line.me/api/notify'
-    token = 'obRD3hjMQQsCiYHYtECjmHYel6fD3CaqNwpI9aavMcm'
+    token = 'hGZIrYAO51zMiw7VEAt4uONdxgEKWEg8E51LGpb77Px'
     headers = {'Authorization':'Bearer '+token}
     return requests.post(url, headers=headers , data=payload, files=file)
 
-# notifyFile('./logo.png')
-lineNotify('ทดสอบภาษาไทย hello')
-notifySticker(40,2)
-notifyPicture("https://www.honey.co.th/wp-content/uploads/2017/03/cropped-logo_resize.png")
+def main_entry():
+    lineNotify('Testing Jenkins Auto-Deploy Pipeline!')
+    return True
+
+default_args = {
+    'owner': 'airflow',
+    'depends_on_past': False,
+    'start_date': days_ago(2),
+    'email': ['airflow@airflow.com'],
+}
+
+dag = DAG(
+    "line_notify", 
+    default_args=default_args,
+    schedule_interval='* * * * *',
+    catchup=False,
+)
+
+t0 = PythonOperator(
+    task_id="line_notify",
+    python_callable=main_entry,
+    dag=dag,
+)
