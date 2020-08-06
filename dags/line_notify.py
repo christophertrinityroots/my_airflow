@@ -31,7 +31,7 @@ def _lineNotify(payload,file=None):
 
 def main_entry():
     # lineNotify('Final Test Pipeline Full-Flow')
-    notifyPicture('https://img.traveltriangle.com/blog/wp-content/uploads/2020/03/cover-image-coronavirus.jpg')
+    # notifyPicture('https://img.traveltriangle.com/blog/wp-content/uploads/2020/03/cover-image-coronavirus.jpg')
     return True
 
 default_args = {
