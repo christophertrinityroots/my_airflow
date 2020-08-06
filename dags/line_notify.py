@@ -25,13 +25,13 @@ def notifySticker(stickerID,stickerPackageID):
 
 def _lineNotify(payload,file=None):
     url = 'https://notify-api.line.me/api/notify'
-    token = 'hGZIrYAO51zMiw7VEAt4uONdxgEKWEg8E51LGpb77Px'
+    token = '4VkEdPzHiwCxhxg8UqSxSd9dUGILkbtliwOGlIIcfl9'
     headers = {'Authorization':'Bearer '+token}
     return requests.post(url, headers=headers , data=payload, files=file)
 
 def main_entry():
     # lineNotify('Final Test Pipeline Full-Flow')
-    print('abc')
+    notifyPicture('https://img.traveltriangle.com/blog/wp-content/uploads/2020/03/cover-image-coronavirus.jpg')
     return True
 
 default_args = {
