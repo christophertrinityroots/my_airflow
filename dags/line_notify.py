@@ -30,7 +30,7 @@ def _lineNotify(payload,file=None):
     return requests.post(url, headers=headers , data=payload, files=file)
 
 def main_entry():
-    lineNotify('Final Test Pipeline Full-Flow')
+    # lineNotify('Final Test Pipeline Full-Flow')
     return True
 
 default_args = {
