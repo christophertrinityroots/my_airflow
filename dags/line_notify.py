@@ -31,7 +31,7 @@ def _lineNotify(payload,file=None):
 
 def main_entry():
     # lineNotify('Final Test Pipeline Full-Flow')
-    print('Success')
+    print('Success Again')
     return True
 
 default_args = {
