@@ -30,7 +30,7 @@ def test_storage_connect():
 def test_variable():
     siteid = Variable.get("siteid", default_var=None)
     table_t = Variable.get("table_t", default_var=None)
-    table_t_c = = Variable.get("table_t_c", default_var=None)
+    table_t_c = Variable.get("table_t_c", default_var=None)
     
     for i in siteid:
         print('-----------------------\n test siteid')
